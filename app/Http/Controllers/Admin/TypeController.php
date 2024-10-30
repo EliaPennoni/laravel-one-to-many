@@ -50,7 +50,7 @@ class TypeController extends Controller
     public function show(string $id)
     {
         $type = Type::findOrFail($id);
-        return view('admin.types.show', compact('types'));
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TypeController extends Controller
     public function edit(string $id)
     {
         $type = Type::findOrFail($id);
-        return view('admin.types.edit', compact('types'));
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -73,7 +73,7 @@ class TypeController extends Controller
         ]);
         $data['slug'] = str()->slug($data['name']);
         $type = Type::findOrFail($id);
-        $type = Type::update($data);
+        $type->update($data);
 
 
         return redirect()->route('admin.types.show', ['type' => $type->id]);

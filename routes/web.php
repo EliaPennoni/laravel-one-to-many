@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Controllers
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\Admin\MainController as AdminMainController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/', [MainController::class, 'dashboard'])->name('home');
 
 Route::prefix('admin')
     ->name('admin.')
@@ -27,6 +28,7 @@ Route::prefix('admin')
 
         Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
         Route::resource('projects', ProjectController::class);
+        Route::resource('types', TypeController::class);
 
     });
 
