@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\project;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Models\{
+    Type,
+    Project,
+};
 
 class ProjectController extends Controller
 {
@@ -22,7 +27,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
+
     }
 
     /**
@@ -30,19 +37,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->validate([
             'title' => 'required|max:64',
             'price' => 'required',
             'description' => 'nullable',
             'image' => 'nullable',
+            'type_id' => 'nullable|exists:types,id',
         ]);
+
         $data['slug'] = str()->slug($data['title']);
         $project = Project::create($data);
 
-
         return redirect()->route('admin.projects.show', ['project' => $project->id]);
     }
+
 
 
     /**
@@ -64,22 +72,22 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, Project $project)
     {
         $data = $request->validate([
             'title' => 'required|max:64',
             'price' => 'required',
             'description' => 'nullable',
             'image' => 'nullable',
+            'type_id' => 'nullable|exists:types,id',
         ]);
+
         $data['slug'] = str()->slug($data['title']);
-        $project = Project::create($data);
-
         $project->update($data);
-
 
         return redirect()->route('admin.projects.show', ['project' => $project->id]);
     }
+
 
     /**
      * Remove the specified resource from storage.

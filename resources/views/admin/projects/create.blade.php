@@ -24,6 +24,21 @@
                     <input type="text" class="form-control" id="description" name="description"
                         placeholder="inserisci la descrizione">
                 </div>
+
+                <div>
+                    <label for="project_id" class="form-label">Progetti</label>
+                    <select id="project_id" name="project_id" class="form-select">
+                        <option selected>Seleziona un tipo</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+
+
+                    </select>
+
+
+                </div>
+
                 <div class="mb-3">
                     <label for="image" class="form-label">Immagine</label>
                     <input type="text" class="form-control" id="image" name="image"

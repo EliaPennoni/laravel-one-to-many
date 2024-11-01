@@ -24,6 +24,7 @@
                     <input type="text" class="form-control" id="description" name="description"
                         placeholder="inserisci la descrizione">
                 </div>
+
                 <div class="mb-3">
                     <label for="image" class="form-label">Immagine</label>
                     <input type="text" class="form-control" id="image" name="image"
