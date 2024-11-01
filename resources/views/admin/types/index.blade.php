@@ -13,10 +13,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">Slug</th>
-                        <th scope="col">Prezzo</th>
-                        <th scope="col">Descrizione</th>
-                        <th scope="col">Immagine</th>
-                        <th scope="col">Data</th>
+                        <th scope="col">Numero di progetti connessi</th>
                         <th scope="col">Vai</th>
 
                     </tr>
@@ -27,6 +24,9 @@
                             <th scope="row">{{ $type->id }}</th>
                             <td> {{ $type->name }} </td>
                             <td> {{ $type->slug }} </td>
+                            <td>
+                                {{ $type->projects()->count() }}
+                            </td>
                             <td>
                                 <a href="{{ route('admin.types.show', ['type' => $type->id]) }}"
                                     class="btn btn-success">Visualizza</a>

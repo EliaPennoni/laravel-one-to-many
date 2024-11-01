@@ -21,6 +21,17 @@
                     Slug: {{ $type->slug }}
                 </li>
 
+                <li>
+                    Progetti collegati:
+                    <ul>
+                        @foreach ($type->projects as $project)
+                            <li>
+                                {{ $project->title }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+
             </ul>
 
 

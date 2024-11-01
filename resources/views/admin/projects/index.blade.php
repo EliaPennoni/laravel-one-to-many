@@ -31,7 +31,9 @@
                             <td>{{ $project->price }}</td>
                             <td>
                                 @if ($project->type != null)
-                                    {{ $project->type->name }}
+                                    <a href="{{ route('admin.types.show', ['type' => $project->type->id]) }}">
+                                        {{ $project->type->name }}
+                                    </a>
                                 @else
                                     -
                                 @endif
